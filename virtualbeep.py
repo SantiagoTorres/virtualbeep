@@ -33,7 +33,7 @@ def play_beep(secs, notefreq):
 
     # define the length of the beep
     fs = 44100
-    vectorsize = fs * secs
+    vectorsize = int(fs * secs)
 
     # define the frequency of the beep
     noteperiod = fs / notefreq
@@ -57,6 +57,5 @@ if __name__ == "__main__":
         help='defines a custom frequency to play in hz')
     args = parser.parse_args()
 
-    play_beep(int(args.secs), float(args.notefreq))
+    play_beep(float(args.secs), float(args.notefreq))
 
-   
