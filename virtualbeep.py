@@ -19,17 +19,20 @@
 """
 import scikits.audiolab as a 
 import argparse
+import time
 
 from numpy import array
 
 DEFAULT_SECONDS = 2
 DEFAULT_FREQUENCY = 440.0
+DEFAULT_DELAY = 0
 
 """
     Play a beep of the specified frequency as notefreq and for secs seconds
     long
 """
-def play_beep(secs, notefreq):
+def play_beep(secs = DEFAULT_SECONDS, notefreq = DEFAULT_FREQUENCY,
+        delay = DEFAULT_DELAY):
 
     # define the length of the beep
     fs = 44100
@@ -44,6 +47,7 @@ def play_beep(secs, notefreq):
         range(1, vectorsize)])
 
     a.play(beep, fs=fs)
+    time.sleep(delay)
 
 
 if __name__ == "__main__":
@@ -55,7 +59,11 @@ if __name__ == "__main__":
     parser.add_argument('--frequency', '-f', metavar = 'frequency', 
         default=DEFAULT_FREQUENCY, dest = 'notefreq', nargs = '?',
         help='defines a custom frequency to play in hz')
+    parser.add_argument('-d', '-D', '--delay', metavar = 'delay',
+        default = DEFAULT_DELAY, dest = 'delay', nargs = '?',
+        help = 'defines a custom delay after playing the beep')
+
     args = parser.parse_args()
 
-    play_beep(float(args.secs), float(args.notefreq))
+    play_beep(float(args.secs), float(args.notefreq), float(args.delay))
 
