@@ -1,14 +1,14 @@
 Virtualbeep
 ================
 
-A super simple code snipped I made wih scikit's audiolab to play custom 
+A super-simple code snippet I made wih scikit's audiolab to play custom 
 frequencies on my speaker. 
 
-Lately, there has been some oddities with the beep command under ubuntu based
-distros (some blacklisting issues with the kernel IIRC) and some laptops
-don't even support with the hardware. Since I had some funny beep-powered 
-shellscripts from past projects (looking at you GIDA) and I didn't have a 
-way to play them I decided to make this snippet. 
+Lately, there had been some oddities with the beep command under ubuntu based
+distros (some blacklisting issues with the kernel IIRC) and some laptops don't
+even support the hardware for regular beep. Since I had some funny beep-powered
+shellscripts from past projects (looking at you GIDA) and I didn't have a way
+to play them I decided to make this snippet. 
 
 
 HOW TO USE?
