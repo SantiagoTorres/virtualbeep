@@ -21,7 +21,7 @@ import scikits.audiolab as a
 import argparse
 import time
 
-from numpy import array
+from numpy import array, pi, sin, arange
 
 DEFAULT_SECONDS = 2
 DEFAULT_FREQUENCY = 440.0
@@ -45,6 +45,27 @@ def play_beep(secs = DEFAULT_SECONDS, notefreq = DEFAULT_FREQUENCY,
     # create a vector and play it 
     beep = array([ float((x % noteperiod) - noteoffset)/noteoffset for x in
         range(1, vectorsize)])
+
+    a.play(beep, fs=fs)
+    time.sleep(delay)
+
+
+"""
+    Play a beep of the specificad frequeny for secs seconds. This beep is 
+    a smoother sinusoidal wave (play_beep defaults to a sawtooth).
+"""
+def play_sin_beep(secs = DEFAULT_SECONDS, notefreq = DEFAULT_FREQUENCY,
+        delay = DEFAULT_DELAY):
+
+    # define the length of the beep
+    fs = 44100
+    vectorstep  = 1/float(fs)
+
+    # create the sinusoidal vector
+    sin_vect = sin([2 * pi * notefreq * x for x in arange(0, secs, vectorstep)])
+    normalization_const = max(sin_vect)
+
+    beep = array([x/normalization_const for x in sin_vect])
 
     a.play(beep, fs=fs)
     time.sleep(delay)
